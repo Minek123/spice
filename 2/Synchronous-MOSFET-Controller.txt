@@ -1,0 +1,55 @@
+=========================================================================================================
+
+[ZXGD3105N8]
+*DIODES_INC_SPICE_MODEL ZXGD3105
+*SIMULATOR=SIMETRIX
+*ORIGIN=DZSL_DPG_SU
+*DATE=29Nov2012
+*VERSION=1
+
+.SUBCKT ZXGD3105 1 2 3 4 5 6 7 8
+L1 1 11 2n
+L2 7 12 2n
+Din 3 4 DMOD1
+Rin 3 12 30000
+*Dx 3 5 DMOD
+D1 3 11 DMOD
+D2 12 3 DMOD
+Q1 5 3 12 NMOD
+
+G1 11 13 VALUE={1.38e-11*(exp((V(30)-V(13))/.0026))}
+G2 14 12 VALUE={1.38e-11*(exp((V(14)-V(30))/.0026))}
+R01 11 13 1000000
+R02 14 12 1000000
+R03 13 8 2
+R04 14 8 1.2
+D3 8 11 DMOD
+D4 12 8 DMOD
+R1 5 30 10
+C2 30 12 8p
+CS 30 8 2p
+.MODEL DMOD D(IS=8n BV=30) 
+.MODEL DMOD1 D(IS=200E-15 RS=59.7m
++ CJO=.6p  VJ=.42 M=0.36 N=1.35 TT=7n)
+.MODEL NMOD NPN(IS=1.25E-15 BF=11 NF=1 ISE=6E-16 NE=1.15 CJC=2.56E-12 VJC=.72 MJC=.21 CJE=3.72E-12 VJE=.72 MJE=.24 TR=.1E-9)
+
+.ENDS
+
+
+*                (c)  2012 Diodes Inc
+*
+*   The copyright in these models  and  the designs embodied belong
+*   to Diodes Incorporated (" Zetex ").  They  are  supplied
+*   free of charge by Zetex for the purpose of research and design
+*   and may be used or copied intact  (including this notice)  for
+*   that purpose only.  All other rights are reserved.  The models
+*   are believed accurate but no condition  or warranty  as to their
+*   merchantability or fitness for purpose is given and no liability
+*   in respect of any use is accepted by Diodes Incorporated, its distributors
+*   or agents.
+*
+*   Diodes Zetex Semiconductors Ltd, Zetex Technology Park, Chadderton,
+*   Oldham, United Kingdom, OL9 9LL
+*
+
+=========================================================================================================
