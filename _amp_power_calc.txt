@@ -1,0 +1,54 @@
+http://www.diyaudio.com/forums/solid-state/208596-measuring-output-power.html
+
+
+V = I*R and P = I^2 * R works for DC current.
+
+For AC current (sinus) we can calculate power like this:
+Vpp=40V
+Vrms = (Vpp/2) * 0.707 = 14V
+P = (Vrms)^2 / R
+
+So in your case:
+P = 14^2/6.2 = 196/6.2 = 31W
+
+
+==========
+
+
+P = I * V = V^2 / R = I^2 * R
+This is the general rule that applies to DC and any AC waveform that has exactly the same heating effect as the DC. rms is applied to an AC waveform to indicate the heating effect equivalence.
+
+Now let's move on to sinewave power. This is just one special case of an infinite number of AC waveforms.
+
+P = Iac * Vac = Vac^2 / R = Iac^2 * R
+In this case ac is the meter reading shown by an AC voltmeter that is calibrated to show sinewave equivalence to the DC voltage. The meter does not need to be rms.
+
+If you read the same voltage on an oscilloscope, you will see the peak to peak voltage Vpp, where Vpp = 2 * sqrt(2) * Vac (as read on that voltmeter calibrated to read Vac equivalent to the DC voltage).
+
+When using peak values of sinewave we usually deal with Vpk (the amplitude of the voltage waveform about Zero Volts). Vpp = 2 * Vpk
+The power formulae for the peak voltage and peak current are:
+
+P = Ipk * Vpk / 2 = Vpk^2 / R = Ipk^2 * R
+
+Now to the general (covers all types of waveform including pulsed, square, triangular, sinewave, multiple sinewaves, DC and varying DC and all the other waveforms that exist) formulae for power:
+
+P = Irms * Vrms = Vrms^2 / R = Irms^2 * R.
+
+Irms and Vrms must be read on a meter calibrated for directly reading any waveform and displaying the heating effect as a constant and equivalent DC voltage.
+rms reading meters are usually more expensive compared to average reading AC meters calibrated to read sinewaves.
+
+Both average reading and rms reading meters are only accurate within the frequency range specified by the manufacturer and only to the accuracy of each scale specified by the manufacturer.
+
+Notice the four groups of formulae are in exactly the same format.
+__________________
+regards Andrew T.
+Sent from my desktop computer using a keyboard 
+
+
+
+
+
+
+FQA40N25 and FQA36P15
+
+FDA69N25 and null

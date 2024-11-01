@@ -1,0 +1,92 @@
+.SUBCKT HUF75639P  2 1 3      
+*Nom Temp=25 deg C    3 Nmos no Esd  model   
+*14 Oct 98
+*revA1 18July2008
+Ca 12 8 28.5e-10
+Cb 15 14 26.5e-10
+Cin 6 8 19e-10
+
+Dbody 7 5 DbodyMOD
+Dbreak 5 11 DbreakMOD
+Dplcap 10 5 DplcapMOD
+
+Ebreak 11 7 17 18 110
+Eds 14 8 5 8 1
+Egs 13 8 6 8 1
+Esg 6 10 6 8 1
+Evthres 6 21 19 8 1
+Evtemp 20 6 18 22 1
+
+It 8 17 1
+
+Lgate 1 9 1e-9
+Ldrain 2 5 2.0e-9
+Lsource 3 7 4.69e-10
+
+
+RLgate 1 9 10
+RLdrain 2 5 20
+RLsource 3 7 4.69
+
+Mmed 16 6 8 8 MmedMOD
+Mstro 16 6 8 8 MstroMOD 
+Mweak 16 21 8 8 MweakMOD    
+
+Rbreak 17 18 RbreakMOD 1
+Rdrain 50 16 RdrainMOD 13e-3
+Rgate 9 20 .7
+RSLC1 5 51 RSLCMOD 1e-6
+RSLC2 5 50 1e3
+Rsource 8 7 RsourceMOD 4.5e-3
+Rvthres 22 8 RvthresMOD 1
+Rvtemp 18 19 RvtempMOD 1
+S1a 6 12 13 8 S1AMOD
+S1b 13 12 13 8 S1BMOD
+S2a 6 15 14 13 S2AMOD
+S2b 13 15 14 13 S2BMOD
+
+Vbat 22 19 DC 1
+
+ESLC 51 50  VALUE={(V(5,51)/ABS(V(5,51)))*(PWR(V(5,51)/(1e-6*115),4))}
+
+.MODEL DbodyMOD D (IS=1.4e-12  RS=3.3e-3  XTI=4.7 TRS1=2e-3  TRS2=0.1e-5
++ CJO=3.3e-9 TT=6.1e-8 M=0.6)
+.MODEL DbreakMOD D (RS=3.5e-1 TRS1=1e-3 TRS2=1e-6)
+.MODEL DplcapMOD D (CJO=2.2e-9 IS=1e-30 N=10 M=0.95 vj=1.0)
+
+.MODEL MmedMOD NMOS (VTO=3.5 KP=4.8 IS=1e-30 N=10 TOX=1 L=1u W=1u RG=0.7)
+.MODEL MstroMOD NMOS (VTO=3.97 KP=56.5 IS=1e-30 N=10 TOX=1 L=1u W=1u)
+.MODEL MweakMOD NMOS (VTO=3.11 kp=0.085 IS=1e-30 N=10 TOX=1 L=1u W=1u RG=7 RS=0.1) 
+
+.MODEL RbreakMOD RES (TC1=0.8e-3 TC2=1e-6)
+.MODEL RdrainMOD RES (TC1=1.0e-2 TC2=1.75e-5)
+.MODEL RSLCMOD RES (TC1=2.80e-3 TC2=14e-6)
+.MODEL RsourceMOD RES (TC1=0 TC2=0)
+.MODEL RvthresMOD RES (TC1=-2e-3 TC2=-1.75e-5)
+.MODEL RvtempMOD RES (TC1=-2.75e-3 TC2=.05e-9)
+
+.MODEL S1AMOD VSWITCH (RON=1e-5 ROFF=0.1 VON=-6.0 VOFF=-3.5)
+.MODEL S1BMOD VSWITCH (RON=1e-5 ROFF=0.1 VON=-3.5 VOFF=-6.0)
+.MODEL S2AMOD VSWITCH (RON=1e-5 ROFF=0.1 VON=-2.5 VOFF=4.95)
+.MODEL S2BMOD VSWITCH (RON=1e-5 ROFF=0.1 VON=4.95 VOFF=-2.5)
+
+.ENDS
+
+*Thermal Model Subcircuit
+*TA75639
+.SUBCKT HUF75639T th tl
+CTHERM1 th 6 2.8e-3
+CTHERM2 6 5 4.6e-3
+CTHERM3 5 4 5.5e-3
+CTHERM4 4 3 9.2e-3
+CTHERM5 3 2 1.7e-2
+CTHERM6 2 tl 4.3e-2
+
+RTHERM1 th 6 5.0e-4
+RTHERM2 6 5 1.5e-3
+RTHERM3 5 4 2.0e-2
+RTHERM4 4 3 9.0e-2
+RTHERM5 3 2 1.9e-1
+RTHERM6 2 tl 2.9e-1
+.ENDS HUF75639T
+
